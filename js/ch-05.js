@@ -1,4 +1,90 @@
-console.log(new Array(300).fill(99).map(('ss', 60) => ));
+const userJohn = {
+  bills: [124, 48, 268, 180, 42],
+  name: 'userJohn',
+  calcTips() {
+    this.tips = [];
+    this.bills.forEach((element) => {
+      if (element < 50) {
+        this.tips.push(Math.round(element * 2) / 100);
+      }
+      if (element >= 50 && element <= 200) {
+        this.tips.push(Math.round(element * 15) / 100);
+      }
+      if (element > 200) {
+        this.tips.push(Math.round(element * 1) / 100);
+      }
+    });
+  },
+  caclFullPrice() {
+    if (this.tips === undefined) {
+      this.calcTips();
+    }
+    this.fullBills = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < this.tips.length; i++) {
+      this.fullBills.push(this.bills[i] + this.tips[i]);
+    }
+  },
+  calcAverTip() {
+    if (this.tips === undefined) {
+      this.calcTips();
+    }
+    let total = 0;
+    this.tips.forEach((element) => {
+      total += element;
+    });
+    this.averageTip = Math.round((total * 100) / this.tips.length) / 100;
+  },
+};
+
+userJohn.caclFullPrice();
+
+console.log(userJohn.bills, '\n', userJohn.tips, '\n', userJohn.fullBills);
+
+const userMark = {
+  bills: [77, 375, 110, 45],
+  name: 'Mark',
+  calcTips() {
+    this.tips = [];
+    this.bills.forEach((element) => {
+      if (element < 100) {
+        this.tips.push(Math.round(element * 2) / 100);
+      }
+      if (element >= 100 && element <= 300) {
+        this.tips.push(Math.round(element * 1) / 100);
+      }
+      if (element > 300) {
+        this.tips.push(Math.round(element * 25) / 100);
+      }
+    });
+  },
+  caclFullPrice() {
+    if (this.tips === undefined) {
+      this.calcTips();
+    }
+    this.fullBills = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < this.tips.length; i++) {
+      this.fullBills.push(this.bills[i] + this.tips[i]);
+    }
+  },
+  calcAverTip() {
+    if (this.tips === undefined) {
+      this.calcTips();
+    }
+    let total = 0;
+    this.tips.forEach((element) => {
+      total += element;
+    });
+    this.averageTip = Math.round((total * 100) / this.tips.length) / 100;
+  },
+};
+
+userJohn.calcAverTip();
+userMark.calcAverTip();
+
+const familyHT = userJohn.averageTip > userMark.averageTip ? userJohn : userMark;
+console.log(`The highest average tip pay ${familyHT.name}. It's $${familyHT.averageTip}`);
 
 // * CODING CHALLENGE 5
 // */
